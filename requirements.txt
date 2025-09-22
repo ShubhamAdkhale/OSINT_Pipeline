@@ -1,0 +1,29 @@
+# Core dependencies
+python-dotenv>=1.0.0  # For loading environment variables
+requests>=2.31.0      # For making HTTP requests
+
+# Data Processing
+nltk>=3.8.1          # For text processing and language detection
+langdetect>=1.0.9    # For language detection
+beautifulsoup4>=4.12.2  # For web scraping
+lxml>=4.9.3          # For XML/HTML processing
+
+# Social Media APIs
+facebook-sdk>=3.1.0  # For Facebook Graph API
+tweepy>=4.14.0       # For Twitter API
+praw>=7.7.1          # For Reddit API
+PyGithub>=2.1.1      # For GitHub API
+
+# Data Analysis
+pandas>=2.0.3        # For data manipulation and analysis
+numpy>=1.24.3        # For numerical operations
+textblob>=0.17.1     # For sentiment analysis
+
+# Optional but recommended
+tqdm>=4.65.0         # For progress bars
+colorama>=0.4.6      # For colored terminal output
+
+# Development tools (optional)
+black>=23.7.0        # For code formatting
+pylint>=2.17.5       # For code linting
+pytest>=7.4.0        # For testing
