@@ -3,9 +3,14 @@ from collectors.twitter_collector import fetch_twitter
 from collectors.reddit_collector import fetch_reddit
 from collectors.github_collector import fetch_github
 
+import os
+import sqlite3
+import pandas as pd
+
 from utils.cleaner import clean_text, filter_english
 from utils.database import save_to_db
 from utils.sentiment import add_sentiment
+from utils.visualizer import DataVisualizer
 
 def run_pipeline():
     data = []
@@ -56,10 +61,38 @@ def run_pipeline():
             sentiment_data = add_sentiment(english_data)
             save_to_db(sentiment_data)
             print(f"💾 Saved {len(sentiment_data)} OSINT records to database")
+            
+            # Generate visualizations
+            visualize_data()
         except Exception as e:
             print(f"❌ Error in analysis/saving: {e}")
     else:
         print("❌ No valid data to process")
+
+def visualize_data():
+    """Create visualizations from database data"""
+    try:
+        # Connect to database and load data
+        db_path = "data/osint.db"
+        if not os.path.exists(db_path):
+            print("❌ Database file does not exist yet. Run the pipeline first.")
+            return
+        
+        conn = sqlite3.connect(db_path)
+        df = pd.read_sql_query("SELECT * FROM osint_data", conn)
+        conn.close()
+        
+        if len(df) == 0:
+            print("❌ No data found in database")
+            return
+            
+        # Create and save visualizations
+        visualizer = DataVisualizer()
+        visualizer.plot_sentiment_by_platform(df)
+        print("✅ Visualizations created successfully")
+        
+    except Exception as e:
+        print(f"❌ Error creating visualizations: {e}")
 
 def view_database():
     """View all records in the database"""
