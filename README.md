@@ -14,7 +14,7 @@ A Python-based OSINT (Open Source Intelligence) data collection and analysis pip
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/[your-username]/osint_pipeline.git
+git clone https://github.com/ShubhamAdkhale/OSINT_Pipeline.git
 cd osint_pipeline
 ```
 
@@ -69,7 +69,3 @@ osint_pipeline/
     ├── sentiment.py    # Sentiment analysis
     └── visualizer.py   # Data visualization
 ```
-
-## License
-
-[MIT License](LICENSE)
